@@ -1,0 +1,45 @@
+
+USE sakila;
+
+
+SELECT * FROM film;
+
+
+SELECT * FROM actor WHERE last_name ='HOPPER';
+
+
+SELECT * FROM film ORDER BY length ASC;
+
+
+SELECT * FROM customer WHERE first_name LIKE '%CE%';
+
+
+SELECT * FROM payment WHERE amount > 5.00;
+
+
+SELECT * FROM city 
+JOIN country ON city.country_id = country.country_id 
+WHERE country = 'India';
+
+
+SELECT title, name FROM film_category
+INNER JOIN film ON film.film_id = film_category.film_id
+INNER JOIN category ON film_category.category_id = category.category_id
+WHERE category.name = 'Drama';
+
+
+SELECT title, name, rating FROM film_category
+INNER JOIN film ON film.film_id = film_category.film_id
+INNER JOIN category ON film_category.category_id = category.category_id
+WHERE category.name = 'Action' AND film.rating = 'PG';
+
+
+SELECT COUNT(customer_id), store_id FROM customer WHERE store_id=1;
+
+
+SELECT customer.first_name,customer.last_name, country.country 
+FROM address 
+INNER JOIN customer ON customer.address_id = address.address_id
+INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_id = country.country_id
+WHERE first_name='BERNICE' AND last_name='WILLIS';
